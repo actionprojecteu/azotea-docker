@@ -10,11 +10,8 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
 	&&  rm -rf /var/lib/apt/lists/* \
     && pip3 install indiweb
 
-# Indiserver port
-EXPOSE 7624
-
-# Indi Web server
-EXPOSE 8624
+# Indiserver and webserver ports respectively
+EXPOSE 7624/tcp 8624/tcp
 
 HEALTHCHECK --start-period=2m --interval=1m --timeout=5s --retries=3 \
   CMD curl -I --fail http://localhost:8624 || exit 1
