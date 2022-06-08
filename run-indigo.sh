@@ -6,5 +6,7 @@ podman run -ti --name indigo --pod azotea \
  --systemd always --privileged \
  --volume /dev/bus/usb:/dev/bus/usb  \
  --mount type=tmpfs,destination=/tmp \
+--health-interval 1m --health-timeout 5s --health-start-period 2m \
+--health-cmd 'curl -I --fail http://localhost:7624 || exit 1'  \
 localhost/indigo:0.1.0
 
