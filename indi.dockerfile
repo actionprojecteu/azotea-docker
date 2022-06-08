@@ -13,7 +13,4 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
 # Indiserver and webserver ports respectively
 EXPOSE 7624/tcp 8624/tcp
 
-HEALTHCHECK --start-period=2m --interval=1m --timeout=5s --retries=3 \
-  CMD curl -I --fail http://localhost:8624 || exit 1
-
-ENTRYPOINT ["/usr/local/bin/indi-web"]
+#ENTRYPOINT ["/usr/local/bin/indi-web"]
