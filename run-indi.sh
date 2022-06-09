@@ -1,10 +1,9 @@
 #!/bin/bash
 
 podman pod create --name azotea -p 8624:8624 -p 7624:7624
-podman run -ti --name indiserver --pod azotea \
+podman run -d --name indiserver --pod azotea \
  --restart on-failure \
- --privileged \
- --volume /dev/bus/usb:/dev/bus/usb  \
+ -v /dev/bus/usb:/dev/bus/usb \
  --mount type=tmpfs,destination=/tmp \
  --health-interval 1m --health-timeout 5s --health-start-period 2m \
  --health-cmd 'curl -I --fail http://localhost:8624 || exit 1'  \
